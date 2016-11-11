@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <ModuleObject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fVersion="1.1" type="Script" mclass="Module" useSupports="true">
   <Name>psKeePass</Name>
-  <Version>0.0.0.5</Version>
+  <Version>0.0.0.6</Version>
   <Description>Wrapper around KeePassLib</Description>
   <HasManifest>true</HasManifest>
   <Provider>
