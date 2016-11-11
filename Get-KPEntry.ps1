@@ -187,7 +187,7 @@ function Get-KPEntry
                 $gPath = $pNames -join '\'
                 try
                 {
-                    Add-Member -InputObject $_ -MemberType NoteProperty -Name GroupPath -Value $gPath
+                    Add-Member -InputObject $_ -MemberType NoteProperty -Name GroupPath -Value "\$($gPath)"
                 }
                 catch [Exception]
                 {
