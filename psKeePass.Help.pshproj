@@ -1,0 +1,1096 @@
+<?xml version="1.0"?>
+<ModuleObject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fVersion="1.1" type="Script" mclass="Module" useSupports="true">
+  <Name>psKeePass</Name>
+  <Version>0.0.0.5</Version>
+  <Description>Wrapper around KeePassLib</Description>
+  <HasManifest>true</HasManifest>
+  <Provider>
+    <ProviderName>CodePlex</ProviderName>
+    <ProviderURL>https://www.codeplex.com/site/metaweblog</ProviderURL>
+    <Blog>
+      <blogid>psKeePass</blogid>
+      <blogName>Wrapper around KeePassLib</blogName>
+      <url>https://pskeepass.codeplex.com/</url>
+    </Blog>
+    <UserName>le0rzz</UserName>
+    <Password>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAy108tRtntEi/ajXPbCuxSwAAAAACAAAAAAADZgAAwAAAABAAAAA0ox75aulrKPo2cKGT5TCIAAAAAASAAACgAAAAEAAAAIL+tfdNd03hAn4qTX8rz5oYAAAAdVBhzClDOi4463Q1xsh6ZJUS99jLvTUjFAAAAHb+UuSioKfAsQvzPEr/7DnOHH5U</Password>
+    <FetchPostCount>50</FetchPostCount>
+  </Provider>
+  <OverridePostCount>false</OverridePostCount>
+  <FetchPostCount xsi:nil="true" />
+  <Cmdlets>
+    <CmdletObject verb="Get" noun="KPEntry">
+      <Name>Get-KPEntry</Name>
+      <GeneralHelp>
+        <Synopsis>Get one or more fields of a database KeePass.</Synopsis>
+        <Description>Get one or more fields of a database KeePass.</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="Parameter Set 1" Params="KeyPassFile GroupPath MasterPassword ForcePlainText IncludeRecycleBin CompositeKey ConnectionInfo Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable WhatIf Confirm" />
+        <CommandParameterSetInfo2 Name="EntryKeys" Params="KeyPassFile Key Value GroupPath MasterPassword ForcePlainText IncludeRecycleBin CompositeKey ConnectionInfo Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable WhatIf Confirm" />
+        <CommandParameterSetInfo2 Name="Uuid" Params="KeyPassFile GroupPath Uuid MasterPassword ForcePlainText IncludeRecycleBin CompositeKey ConnectionInfo Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable WhatIf Confirm" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-KPEntry [[-KeyPassFile] &lt;String&gt;] [-GroupPath &lt;String&gt;] [-MasterPassword &lt;SecureString&gt;] [-ForcePlainText] [-IncludeRecycleBin] [-CompositeKey &lt;CompositeKey&gt;] [-ConnectionInfo &lt;IOConnectionInfo&gt;] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;] [-WhatIf] [-Confirm]</string>
+        <string>Get-KPEntry [[-KeyPassFile] &lt;String&gt;] [-Key &lt;EntryKeys[]&gt;] [-Value &lt;String&gt;] [-GroupPath &lt;String&gt;] [-MasterPassword &lt;SecureString&gt;] [-ForcePlainText] [-IncludeRecycleBin] [-CompositeKey &lt;CompositeKey&gt;] [-ConnectionInfo &lt;IOConnectionInfo&gt;] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;] [-WhatIf] [-Confirm]</string>
+        <string>Get-KPEntry [[-KeyPassFile] &lt;String&gt;] [-GroupPath &lt;String&gt;] [-Uuid &lt;PwUuid&gt;] [-MasterPassword &lt;SecureString&gt;] [-ForcePlainText] [-IncludeRecycleBin] [-CompositeKey &lt;CompositeKey&gt;] [-ConnectionInfo &lt;IOConnectionInfo&gt;] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;] [-WhatIf] [-Confirm]</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>KeyPassFile</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use the location of the KeePass database file.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SecureString" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>MasterPassword</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use a SecureString as password KeePass database.</Description>
+          <DefaultValue>(Get-KPSecurePassword -Alias Default)</DefaultValue>
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>ForcePlainText</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Forcing the field display password plaintext mode.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>WhatIf</Name>
+          <Attributes>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>wi</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Confirm</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>cf</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="EntryKeys[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Key</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use to filter a specific field.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Value</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use combined with the -Key parameter to filter a specific value.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>GroupPath</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use to filter by logical folder. You can use backslashes separator to indicate the nested group, i.e, \MyFirstLevel\MySecondLevel\
+</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>IncludeRecycleBin</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use to include entries at Recicle Bin.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="CompositeKey" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>CompositeKey</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="IOConnectionInfo" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>ConnectionInfo</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="PwUuid" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Uuid</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Example 1</Name>
+          <Cmd>PS&gt; Get-KPEntry -KeyPassFile D:\temp\KeePass-2.32\Databases.kdbx -Key UserName  -Value USR_CCM</Cmd>
+          <Description>The parameter  "-MasterPassword (Get-KPSecurePassword -Alias Default).MasterPassword" is implicits.</Description>
+          <Output>UserName    Password                       Title              URL
+--------    --------                       -----              ---
+USR_CCM     System.Security.SecureString   User to USR_CCM    </Output>
+        </Example>
+        <Example>
+          <Name>Example 2</Name>
+          <Cmd>PS&gt; Get-KPEntry -KeyPassFile D:\temp\KeePass-2.32\Databases.kdbx -Key UserName  -Value USR_CCM -ForcePlainText
+</Cmd>
+          <Description>The parameter  "-MasterPassword (Get-KPSecurePassword -Alias Default).MasterPassword" is implicits.
+The paramenter 'ForcePlainText' makes plain text password.</Description>
+          <Output>UserName Password            Title         URL
+-------- --------            -----         ---
+USR_CCM  password123        User to CCM    </Output>
+        </Example>
+        <Example>
+          <Name>Example 3</Name>
+          <Cmd>PS&gt; Get-KPEntry -KeyPassFile D:\temp\KeePass-2.32\Databases.kdbx -Key Username  -Value log* -MasterPassword (Get-KPSecurePassword -Alias myPass).MasterPassword
+
+UserName      Password                          Title                    URL
+--------      --------                          -----                    ---
+loginternet   System.Security.SecureString      login to internet      
+loginternet_s System.Security.SecureString      login to internet secure    </Cmd>
+          <Description>You can use wildcard values with the parameter 'Value'.</Description>
+          <Output />
+        </Example>
+        <Example>
+          <Name>Example 4</Name>
+          <Cmd>PS&gt; Get-KPEntry -KeyPassFile D:\temp\KeePass-2.32\Databases.kdbx -Key UserName -Value AMAVIS | Select UserName,CreationTime,Notes</Cmd>
+          <Description>The parameter  "-MasterPassword (Get-KPSecurePassword -Alias Default).MasterPassword" is implicits.</Description>
+          <Output>UserName CreationTime        Notes                                
+-------- ------------        -----                                
+AMAVIS   15/06/2015 16:41:28 User to the AMAVIS system.
+</Output>
+        </Example>
+      </Examples>
+      <RelatedLinks>
+        <RelatedLink>
+          <LinkText>Get-KPEntry Online Help:</LinkText>
+          <LinkUrl>https://pskeepass.codeplex.com/wikipage?title=Get-KPEntry</LinkUrl>
+        </RelatedLink>
+      </RelatedLinks>
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://pskeepass.codeplex.com/wikipage?title=Get-KPEntry</URL>
+      <ArticleIDString>703294</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="KPSecurePassword">
+      <Name>Get-KPSecurePassword</Name>
+      <GeneralHelp>
+        <Synopsis>Get a MastePassword as a SecurePassword that can be used in parameters that is requested.</Synopsis>
+        <Description />
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Alias Path Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-KPSecurePassword [[-Alias] &lt;String&gt;] [-Path &lt;String&gt;] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>Alias</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use a name to identify your MasterPassword.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Path</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use the path which is stored your MasterPassword object.</Description>
+          <DefaultValue>$env:LOCALAPPDATA\psKeePass\security</DefaultValue>
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Example 1</Name>
+          <Cmd>PS&gt; Get-KPSecurePassword -Alias Default
+</Cmd>
+          <Description />
+          <Output>MasterPassword                Alias      CreationTime       
+--------------                -----      ------------       
+System.Security.SecureString  Default    07/06/2016 16:20:29</Output>
+        </Example>
+      </Examples>
+      <RelatedLinks>
+        <RelatedLink>
+          <LinkText>Get-KPSecurePassword Online Help:</LinkText>
+          <LinkUrl>https://pskeepass.codeplex.com/wikipage?title=Get-KPSecurePassword</LinkUrl>
+        </RelatedLink>
+      </RelatedLinks>
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://pskeepass.codeplex.com/wikipage?title=Get-KPSecurePassword</URL>
+      <ArticleIDString>703295</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="New" noun="KPSecurePassword">
+      <Name>New-KPSecurePassword</Name>
+      <GeneralHelp>
+        <Synopsis>Create a a MastePassword as a SecurePassword that can be used in parameters that a password is requested.
+</Synopsis>
+        <Description>Several SecurePassword can be created and will be stored by default in the user profile as a SecureString.
+The SecurePassword that was stored with Alias named 'Default' will be automatically used by CMDLES whenever a SecureString is requested.</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Alias Path Force Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>New-KPSecurePassword [-Alias] &lt;String&gt; [-Path &lt;String&gt;] [-Force] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>Alias</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use a name to identify your MasterPassword.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Path</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use the path to store your MasterPassword object.</Description>
+          <DefaultValue>$env:LOCALAPPDATA\psKeePass\security</DefaultValue>
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Force</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use to overwrite a previews SecurePassword.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Example 1</Name>
+          <Cmd>PS&gt; New-KPSecurePassword -Alias myPass
+</Cmd>
+          <Description />
+          <Output>              MasterPassword Alias  CreationTime       
+              -------------- -----  ------------       
+System.Security.SecureString myPass 6/6/2016 4:37:15 PM
+</Output>
+        </Example>
+        <Example>
+          <Name>Example 2</Name>
+          <Cmd>PS&gt; New-KPSecurePassword -Alias Default
+</Cmd>
+          <Description />
+          <Output>              MasterPassword Alias  CreationTime       
+              -------------- -----  ------------       
+System.Security.SecureString Default6/6/2016 4:37:16 PM</Output>
+        </Example>
+      </Examples>
+      <RelatedLinks>
+        <RelatedLink>
+          <LinkText>New-KPSecurePassword Online Help:</LinkText>
+          <LinkUrl>https://pskeepass.codeplex.com/wikipage?title=New-KPSecurePassword</LinkUrl>
+        </RelatedLink>
+      </RelatedLinks>
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://pskeepass.codeplex.com/wikipage?title=New-KPSecurePassword</URL>
+      <ArticleIDString>703296</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Remove" noun="KPSecurePassword">
+      <Name>Remove-KPSecurePassword</Name>
+      <GeneralHelp>
+        <Synopsis>Remove a MastePassword as a SecurePassword.</Synopsis>
+        <Description />
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Alias Path Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Remove-KPSecurePassword [-Alias] &lt;String&gt; [-Path &lt;String&gt;] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="true" isPos="true" pos="1" globbing="false">
+          <Name>Alias</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use a name to identify your MasterPassword.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Path</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use the path which is stored your MasterPassword object.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Example 1</Name>
+          <Cmd>Remove-KPSecurePassword -Alias Default</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks>
+        <RelatedLink>
+          <LinkText>Remove-KPSecurePassword Online Help:</LinkText>
+          <LinkUrl>https://pskeepass.codeplex.com/wikipage?title=Remove-KPSecurePassword</LinkUrl>
+        </RelatedLink>
+      </RelatedLinks>
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://pskeepass.codeplex.com/wikipage?title=Remove-KPSecurePassword</URL>
+      <ArticleIDString>703297</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="New" noun="KPEntry">
+      <Name>New-KPEntry</Name>
+      <GeneralHelp>
+        <Synopsis>Adds a new KeePass entry.</Synopsis>
+        <Description>Adds a new KeePass entry. The database must be opened first. The name of a top-level group/folder in KeePass and an entry title are mandatory,
+but all other arguments are optional. 
+The password is passed in as SecureString  or, if any, you can specify the EntryPasswordComplex end EntryPasswordLenght parameter to auto generate, the SecureString is converted to plaintext and then saved to the KeePass entry.</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="Parameter Set 1" Params="KeyPassFile MasterPassword EntryTitle EntryUserName EntryUrl Tags EntryNotes GroupPath PassThru Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable WhatIf Confirm" />
+        <CommandParameterSetInfo2 Name="EntryPassword" Params="KeyPassFile MasterPassword EntryTitle EntryUserName EntryPassword EntryUrl Tags EntryNotes GroupPath PassThru Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable WhatIf Confirm" />
+        <CommandParameterSetInfo2 Name="AutoPassword" Params="KeyPassFile MasterPassword EntryTitle EntryUserName EntryPasswordLenght EntryPasswordComplex EntryUrl Tags EntryNotes GroupPath PassThru Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable WhatIf Confirm" />
+      </ParamSets>
+      <Syntax>
+        <string>New-KPEntry [-KeyPassFile] &lt;String&gt; [-MasterPassword &lt;SecureString&gt;] [-EntryTitle &lt;String&gt;] [-EntryUserName &lt;String&gt;] [-EntryUrl &lt;String&gt;] [-Tags &lt;String[]&gt;] [-EntryNotes &lt;String&gt;] [-GroupPath &lt;String&gt;] [-PassThru] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;] [-WhatIf] [-Confirm]</string>
+        <string>New-KPEntry [-KeyPassFile] &lt;String&gt; [-MasterPassword &lt;SecureString&gt;] [-EntryTitle &lt;String&gt;] [-EntryUserName &lt;String&gt;] [-EntryPassword &lt;String&gt;] [-EntryUrl &lt;String&gt;] [-Tags &lt;String[]&gt;] [-EntryNotes &lt;String&gt;] [-GroupPath &lt;String&gt;] [-PassThru] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;] [-WhatIf] [-Confirm]</string>
+        <string>New-KPEntry [-KeyPassFile] &lt;String&gt; [-MasterPassword &lt;SecureString&gt;] [-EntryTitle &lt;String&gt;] [-EntryUserName &lt;String&gt;] [-EntryPasswordLenght &lt;Int32&gt;] [-EntryPasswordComplex] [-EntryUrl &lt;String&gt;] [-Tags &lt;String[]&gt;] [-EntryNotes &lt;String&gt;] [-GroupPath &lt;String&gt;] [-PassThru] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;] [-WhatIf] [-Confirm]</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>KeyPassFile</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The previously-opened KeePass database object.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SecureString" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>MasterPassword</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The MasterKey Password to open da KeePass Database.
+It is a PowerShell SecureString object , typically created with the New-KPSecurePassword cmdlet and recovered witch Get-KPSecurePassword cmdlet. 
+If not is specified, the cmdlet get the KPSecurePassword stored with the label 'Default'. The same way that the command (Get-KPSecurePassword -Alias Default).MasterPassword.
+This parameter accept a objetc System.Security.SecureString as well.
+ </Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>EntryTitle</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The Title of the entry to add.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>EntryUserName</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The UserName of the entry to add.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>EntryUrl</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The URL of the entry to add.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Tags</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The Tags of the entry to add.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>EntryNotes</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The Notes of the entry to add.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>GroupPath</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Name of the KeePass logical folder. You can use backslashes separator to indicate the nested group, i.e, \MyFirstLevel\MySecondLevel\
+If this parameter is omitted the default group will be top level.</Description>
+          <DefaultValue>Top Level Group</DefaultValue>
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>WhatIf</Name>
+          <Attributes>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>wi</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Confirm</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>cf</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>EntryPassword</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>An System.Security.SecureString object that will be converted to plain text within the KeePas database.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Int32" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>EntryPasswordLenght</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>If you want to generate the form of password dynamics used to indicate the size of it in character.
+This depends on the parameter -EntryPasswordComplex</Description>
+          <DefaultValue>20</DefaultValue>
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>EntryPasswordComplex</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use to generate complex passwords automatically.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>PassThru</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Example 1</Name>
+          <Cmd>New-KPEntry -KeyPassFile D:\temp\Database.kdbx -GroupPath \MySQL\Dev -EntryTitle "MySql Dev" -EntryUserName myuser -EntryPasswordLenght 10 -EntryPasswordComplex -EntryUrl http://mysql.mycompany -EntryNotes "Important Notes" -Tags Tag1,Tag2,Tag3 -PassThru</Cmd>
+          <Description>You can use -EntryPasswordLenght and -EntryPasswordComplex to auto generate password.</Description>
+          <Output>Uuid                 : KeePassLib.PwUuid
+ParentGroup          : KeePassLib.PwGroup
+LocationChanged      : 14/06/2016 15:58:03
+Strings              : {[Notes, KeePassLib.Security.ProtectedString], [Password, KeePassLib.Security.ProtectedString], [Title, KeePassLib.Security.ProtectedString], [URL, KeePassLib.Security.ProtectedString]...}
+Binaries             : {}
+AutoType             : KeePassLib.Collections.AutoTypeConfig
+History              : {}
+IconId               : Key
+CustomIconUuid       : KeePassLib.PwUuid
+ForegroundColor      : Color [Empty]
+BackgroundColor      : Color [Empty]
+CreationTime         : 14/06/2016 15:58:03
+LastModificationTime : 14/06/2016 15:58:03
+LastAccessTime       : 14/06/2016 15:58:03
+ExpiryTime           : 05/06/2016 20:17:36
+Expires              : False
+UsageCount           : 0
+OverrideUrl          : 
+Tags                 : {Tag1, Tag2, Tag3}
+Touched</Output>
+        </Example>
+        <Example>
+          <Name>Example 2</Name>
+          <Cmd>New-KPEntry -KeyPassFile D:\temp\Databases.kdbx -GroupPath \MySQL\Dev -EntryTitle "MySql Dev" -EntryUserName myuser -Tags Tag1,Tag2,Tag3 -PassThru -EntryPassword ("myPassword" |ConvertTo-SecureString -AsPlainText -Force) | Select -ExpandProperty Strings</Cmd>
+          <Description>You can user -EntryPassword ("myPassword" |ConvertTo-SecureString -AsPlainText -Force) parameter to custom passwords.</Description>
+          <Output>Key      Value                              
+---      -----                              
+Notes    KeePassLib.Security.ProtectedString
+Password KeePassLib.Security.ProtectedString
+Title    KeePassLib.Security.ProtectedString
+URL      KeePassLib.Security.ProtectedString
+UserName KeePassLib.Security.ProtectedString</Output>
+        </Example>
+      </Examples>
+      <RelatedLinks>
+        <RelatedLink>
+          <LinkText>New-KPEntry Online Help:</LinkText>
+          <LinkUrl>https://pskeepass.codeplex.com/wikipage?title=New-KPEntry</LinkUrl>
+        </RelatedLink>
+      </RelatedLinks>
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://pskeepass.codeplex.com/wikipage?title=New-KPEntry</URL>
+      <ArticleIDString>703298</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Set" noun="KPEntry">
+      <Name>Set-KPEntry</Name>
+      <GeneralHelp>
+        <Synopsis>Change a KeePass entry.</Synopsis>
+        <Description>Change a KeePass entry.</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="Parameter Set 1" Params="InputObject EntryTitle EntryUserName EntryUrl AddTags RemoveTags EntryNotes GroupPath PassThru Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable WhatIf Confirm" />
+        <CommandParameterSetInfo2 Name="EntryPassword" Params="InputObject EntryTitle EntryUserName EntryPassword EntryUrl AddTags RemoveTags EntryNotes GroupPath PassThru Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable WhatIf Confirm" />
+      </ParamSets>
+      <Syntax>
+        <string>Set-KPEntry [-InputObject &lt;PwEntry&gt;] [-EntryTitle &lt;String&gt;] [-EntryUserName &lt;String&gt;] [-EntryUrl &lt;String&gt;] [-AddTags &lt;String[]&gt;] [-RemoveTags &lt;String[]&gt;] [-EntryNotes &lt;String&gt;] [-GroupPath &lt;String&gt;] [-PassThru] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;] [-WhatIf] [-Confirm]</string>
+        <string>Set-KPEntry [-InputObject &lt;PwEntry&gt;] [-EntryTitle &lt;String&gt;] [-EntryUserName &lt;String&gt;] [-EntryPassword &lt;SecureString&gt;] [-EntryUrl &lt;String&gt;] [-AddTags &lt;String[]&gt;] [-RemoveTags &lt;String[]&gt;] [-EntryNotes &lt;String&gt;] [-GroupPath &lt;String&gt;] [-PassThru] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;] [-WhatIf] [-Confirm]</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="PwEntry" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InputObject</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use a object [KeePassLib.PwEntry] you want to modify. It can be attributed directly to the parameter or by pipeline.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>EntryTitle</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The Title of the entry to modify.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>EntryUserName</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The UserName of the entry to modify.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>EntryUrl</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The URL of the entry to modify.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Tags</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>EntryNotes</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The Notes of the entry to modify.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>GroupPath</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The GroupPath of the entry to modify.
+It is a name of the KeePass logical folder. You can use backslashes separator to indicate the nested group, i.e, \MyFirstLevel\MySecondLevel\</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>WhatIf</Name>
+          <Attributes>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>wi</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Confirm</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>cf</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SecureString" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>EntryPassword</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The Password of the entry to modify.
+An System.Security.SecureString object that will be converted to plain text within the KeePas database.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>AddTags</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use to ADD Tags to the entry.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>RemoveTags</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Use to REMOVE Tags to the entry.</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>PassThru</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples />
+      <RelatedLinks>
+        <RelatedLink>
+          <LinkText />
+          <LinkUrl />
+        </RelatedLink>
+        <RelatedLink>
+          <LinkText>Set-KPEntry Online Help:</LinkText>
+          <LinkUrl>https://pskeepass.codeplex.com/wikipage?title=Set-KPEntry</LinkUrl>
+        </RelatedLink>
+      </RelatedLinks>
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://pskeepass.codeplex.com/wikipage?title=Set-KPEntry</URL>
+      <ArticleIDString>703299</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Remove" noun="KPEntry">
+      <Name>Remove-KPEntry</Name>
+      <GeneralHelp>
+        <Synopsis>Remove a KeePass entry.</Synopsis>
+        <Description>Remove a KeePass entry.</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="Parameter Set 1" Params="InputObject Permanent PassThru Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable WhatIf Confirm" />
+      </ParamSets>
+      <Syntax>
+        <string>Remove-KPEntry [-InputObject &lt;PwEntry&gt;] [-Permanent] [-PassThru] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;] [-WhatIf] [-Confirm]</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="PwEntry" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InputObject</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Permanent</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>PassThru</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ArgumentTypeConverterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>WhatIf</Name>
+          <Attributes>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>wi</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Confirm</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>cf</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples />
+      <RelatedLinks>
+        <RelatedLink>
+          <LinkText>Remove-KPEntry Online Help:</LinkText>
+          <LinkUrl>https://pskeepass.codeplex.com/wikipage?title=Remove-KPEntry</LinkUrl>
+        </RelatedLink>
+      </RelatedLinks>
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://pskeepass.codeplex.com/wikipage?title=Remove-KPEntry</URL>
+      <ArticleIDString>703300</ArticleIDString>
+    </CmdletObject>
+  </Cmdlets>
+</ModuleObject>
