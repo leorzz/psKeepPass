@@ -29,7 +29,7 @@
 <td>Remove a MastePassword as a S ecurePassword.</td>
 </tr>
 <tr>
-<td><a href=" https://pskeepass.codeplex.com/wikipage?title=Set-KPEntry" target="_blank">Set-KPEntry</a></td>
+<td><a href="https://pskeepass.codeplex.com/wikipage?title=Set-KPEntry" target="_blank">Set-KPEntry</a></td>
 <td>Change a KeePass entry.</td>
 </tr>
 </tbody>
