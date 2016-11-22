@@ -35,26 +35,34 @@ function Remove-KPEntry
                 {
                     if ($_ -is [KeePassLib.PwEntry] )
                     {
-                        $PwEntry = $_
-                        $connectionInfo = $PwEntry.connectionInfo
-                        $compositeKey = $PwEntry.compositeKey
-                        $kpDatabase.open($connectionInfo,$compositeKey,$statusLogger)
+                        try
+                        {
+                            $PwEntry = $_
+                            $connectionInfo = $PwEntry.connectionInfo
+                            $compositeKey = $PwEntry.compositeKey
+                            $kpDatabase.open($connectionInfo,$compositeKey,$statusLogger)
 
-                        if ($kpDatabase.RecycleBinEnabled -and (-not $Permanent.IsPresent))
-                        {
-                            $pwGroupRecycleBin = $kpDatabase.RootGroup.FindGroup($kpDatabase.RecycleBinUuid,$true)
-                            $pwGroupRecycleBin.AddEntry($PwEntry, $true, $true)
-                        }
-                        else
-                        {
                             $pwDeletedObject = New-Object KeePassLib.PwDeletedObject
                             $pwDeletedObject.Uuid = $PwEntry.Uuid
                             $pwDeletedObject.DeletionTime = Get-Date
                             $kpDatabase.DeletedObjects.Add($pwDeletedObject)
                             $kpDatabase.MergeIn($kpDatabase,[KeePassLib.PwMergeMethod]::Synchronize,$statusLogger)
+
+                            if ($kpDatabase.RecycleBinEnabled -and (-not $Permanent.IsPresent))
+                            {
+                                $pwGroupRecycleBin = $kpDatabase.RootGroup.FindGroup($kpDatabase.RecycleBinUuid,$true)
+                                $pwGroupRecycleBin.AddEntry($PwEntry, $true, $true)
+                            }
+
+                            $PwEntry.Touch($true,$true)
+                            $kpDatabase.Save($statusLogger)
+                            $kpDatabase.Close()
                         }
-                        $kpDatabase.Save($statusLogger)
-                        $kpDatabase.Close()
+                        catch [Exception]
+                        {
+                            Write-KPLog -message $_ -Level EXCEPTION
+                            Write-Host $($_.Exception.Message) -ForegroundColor Red
+                        }
 
                     }
                     else

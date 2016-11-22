@@ -141,7 +141,7 @@ function Get-KPEntry
         }
 
 
-        if (-not $key)
+        if ([String]::IsNullOrEmpty($key))
         {
             $Key = [System.Enum]::GetValues('EntryKeys')
         }
@@ -149,30 +149,6 @@ function Get-KPEntry
         {
             $Value = '*'
         }
-
-#        function Get-ParentGroup ($item)
-#        {
-#            if ($item)
-#            {
-#                try
-#                {
-#                    $item = $item.ParentGroup
-#                    [String]$pGroup = $null
-#                    While($item)
-#                    {
-#                        $pGroup = "\$($item.Name)" + $pGroup
-#                        $item = $item.ParentGroup
-#                    }
-#                    return $pGroup.ToString()
-#                }
-#                catch [Exception]
-#                {
-#                    return $null
-#                }
-#            }
-#        }
-
-               
 
     }#BEGIN
     
@@ -204,83 +180,25 @@ function Get-KPEntry
 
         foreach($kpItem in $kpItems)
         {
+
             foreach ($k in $key)
             {
                 $val = $kpItem.Strings.ReadSafe($K)
 
                 if ( $val -and ($val -like $Value) )
                 {
-                    $entry = New-Object PSObject
-                    $kpItem.Strings | % {
-                                            try
-                                            {
-                                                $val = $null
-                                                $val = $kpItem.Strings.ReadSafe($_.Key)
-                                                if (-not [String]::IsNullOrEmpty($val))
-                                                {
-                                                    if ( ($_.Key -eq "Password") )
-                                                    {
-                                                        try
-                                                        {
-                                                            $secPassword = $val | ConvertTo-SecureString -AsPlainText -Force -ErrorAction stop
-                                                            if (-not $ForcePlainText.IsPresent)
-                                                            {
-                                                                $val = $secPassword
-                                                            }
-                                                        }
-                                                        catch [Exception]
-                                                        {
-                                                            #$val = $_.Exception.Message
-                                                            $val = $null
-                                                        }
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    $val = $null
-                                                }
-                                            }
-                                            catch [Exception]
-                                            {
-                                                $val = $null
-                                            }
-
-
-                                            try
-                                            {
-                                                Add-Member -InputObject $kpItem -MemberType NoteProperty -Name $_.Key -Value $val
-                                            }
-                                            catch [exception]
-                                            {
-                                                Write-KPLog -message $_ -Level EXCEPTION
-                                            }
-                                            
-                                        }# $kpItem.Strings
-                    try
+                    $item = Format-KpPwEntry -PwEntry $kpItem -CompositeKey $CompositeKey -ConnectionInfo $ConnectionInfo -ForcePlainText:$ForcePlainText.IsPresent
+                    if ($item)
                     {
-                        if ($kpItem.UserName -and $secPassword)
-                        {
-                            $psCred = New-Object System.Management.Automation.PSCredential ($kpItem.UserName, $secPassword)
-                            Add-Member -InputObject $kpItem -MemberType NoteProperty -Name PsCredential -Value $psCred
-                            Add-Member -InputObject $kpItem -MemberType NoteProperty -Name User -Value $kpItem.UserName
-                        }
-                        #Add-Member -InputObject $kpItem -MemberType NoteProperty -Name GroupPath -Value (Get-ParentGroup $kpItem)
-                        Add-Member -InputObject $kpItem -MemberType NoteProperty -Name compositeKey -Value $compositeKey
-                        Add-Member -InputObject $kpItem -MemberType NoteProperty -Name connectionInfo -Value $connectionInfo
-                        
-                        Set-KPStandardMembers -MyObject $kpItem -DefaultProperties UserName,Password,Title,GroupPath
+                        Set-KPStandardMembers -MyObject $item -DefaultProperties UserName,Password,Title,GroupPath
+                        Write-Output $item
                     }
-                    catch [Exception]
-                    {
-                        Write-KPLog -message $_ -Level EXCEPTION
-                    }
-                    Write-Output $kpItem
-                    break;
-                }#if
+                    break
+
+               }#if
                 $secPassword = $null
             }
         } 
-        
     }#PROCESS
     END
     {}#END
